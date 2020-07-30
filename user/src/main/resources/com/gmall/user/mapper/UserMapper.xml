@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gmall.user.mapper.UserMapper">
+
+    <select id="selectAllUser" resultType="com.gmall.user.bean.UmsMember">
+        select t.* from ums_member t
+    </select>
+    <select id="selectUserById" resultType="com.gmall.user.bean.UmsMember">
+        select t.* from ums_member t where id = #{id}
+    </select>
+    <insert id="insertUser" parameterType="com.gmall.user.bean.UmsMember" useGeneratedKeys="true">
+        insert into ums_member
+        (member_level_id,
+        username,
+        password,
+        nickname,
+        phone,
+        status,
+        create_time,
+        icon,
+        gender,
+        birthday,
+        city,
+        job,
+        personalized_signature,
+        source_type,
+        integration,
+        growth,
+        luckey_count,
+        history_integration)
+        values
+        (#{memberLevelId},
+        #{username},
+        #{password},
+        #{nickname},
+        #{phone},
+        #{status},
+        #{createTime},
+        #{icon},
+        #{gender},
+        #{birthday},
+        #{city},
+        #{job},
+        #{personalizedSignature},
+        #{sourceType},
+        #{integration},
+        #{growth},
+        #{luckeyCount},
+        #{historyIntegration});
+    </insert>
+    <delete id="deleteUserById">
+        delete from ums_member where id = #{id}
+    </delete>
+    <update id="updateUserPasswordById">
+        update ums_member set password = #{password} where id = #{id}
+    </update>
+</mapper>
