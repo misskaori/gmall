@@ -1,10 +1,17 @@
 package com.gmall.user.bean;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+//@Table(name = "ums_member")
 public class UmsMember implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String memberLevelId;
     private String username;
@@ -175,5 +182,12 @@ public class UmsMember implements Serializable {
 
     public void setHistoryIntegration(int historyIntegration) {
         this.historyIntegration = historyIntegration;
+    }
+
+    public String toString() {
+        StringBuilder res = new StringBuilder("id: " + id);
+        res.append(" memberLevelId: " + memberLevelId);
+        res.append(" username: " + username);
+        return res.toString();
     }
 }

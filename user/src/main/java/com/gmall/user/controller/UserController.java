@@ -14,7 +14,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserServiceImpl userService;
+    UserService userService;
 
     @RequestMapping("/getAllUser")
     @ResponseBody
