@@ -1,7 +1,6 @@
 package com.gmall.user.mapper;
 
-import com.gmall.user.bean.UmsMember;
-import com.gmall.user.bean.UmsMemberReceiveAddress;
+import com.gmall.bean.UmsMemberReceiveAddress;
 import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 

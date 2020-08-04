@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gmall.user.mapper.UserMapper">
 
-    <select id="selectAllUser" resultType="com.gmall.user.bean.UmsMember">
+    <select id="selectAllUser" resultType="com.gmall.bean.UmsMember">
         select t.* from ums_member t
     </select>
-    <select id="selectUserById" resultType="com.gmall.user.bean.UmsMember">
+    <select id="selectUserById" resultType="com.gmall.bean.UmsMember">
         select t.* from ums_member t where id = #{id}
     </select>
-    <insert id="insertUser" parameterType="com.gmall.user.bean.UmsMember" useGeneratedKeys="true">
+    <insert id="insertUser" parameterType="com.gmall.bean.UmsMember" useGeneratedKeys="true">
         insert into ums_member
         (member_level_id,
         username,

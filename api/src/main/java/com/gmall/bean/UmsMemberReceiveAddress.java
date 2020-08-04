@@ -1,4 +1,4 @@
-package com.gmall.user.bean;
+package com.gmall.bean;
 
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -95,15 +95,5 @@ public class UmsMemberReceiveAddress implements Serializable {
 
     public void setDetailAddress(String detailAddress) {
         this.detailAddress = detailAddress;
-    }
-
-    public String toString() {
-        StringBuilder res = new StringBuilder("id: " + id);
-        res.append(" postCode: " + postCode);
-        res.append(" province: " + province);
-        res.append(" city: " + city);
-        res.append(" region: " + region);
-        res.append(" detailAddress: " + detailAddress);
-        return res.toString();
     }
 }

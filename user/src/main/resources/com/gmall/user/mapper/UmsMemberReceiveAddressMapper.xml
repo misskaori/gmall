@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gmall.user.mapper.UmsMemberReceiveAddressMapper">
 
-    <select id="selectAllUserAddress" resultType="com.gmall.user.bean.UmsMemberReceiveAddress">
+    <select id="selectAllUserAddress" resultType="com.gmall.bean.UmsMemberReceiveAddress">
         select t.* from ums_member_receive_address t
     </select>
-    <select id="selectUserAddressById" resultType="com.gmall.user.bean.UmsMemberReceiveAddress">
+    <select id="selectUserAddressById" resultType="com.gmall.bean.UmsMemberReceiveAddress">
         select t.* from ums_member_receive_address t where id = #{id}
     </select>
-    <insert id="insertUserAddress" parameterType="com.gmall.user.bean.UmsMemberReceiveAddress" useGeneratedKeys="true">
+    <insert id="insertUserAddress" parameterType="com.gmall.bean.UmsMemberReceiveAddress" useGeneratedKeys="true">
         insert into ums_member_receive_address
         (member_id,
         name,
