@@ -8,8 +8,12 @@ import java.util.List;
 
 public interface UmsMemberReceiveAddressMapper extends Mapper<UmsMemberReceiveAddress> {
     List<UmsMemberReceiveAddress> selectAllUserAddress();
+
     List<UmsMemberReceiveAddress> selectUserAddressById(String id);
+
     void insertUserAddress(UmsMemberReceiveAddress umsMemberReceiveAddress);
+
     void deleteUserAddressById(String id);
+
     void updateUserAddressById(@Param("id") String id, @Param("umsMemberReceiveAddress") UmsMemberReceiveAddress umsMemberReceiveAddress);
 }

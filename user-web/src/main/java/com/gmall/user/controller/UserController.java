@@ -18,14 +18,14 @@ public class UserController {
 
     @RequestMapping("/getAllUser")
     @ResponseBody
-    public List<UmsMember> getAllUser(){
+    public List<UmsMember> getAllUser() {
         List<UmsMember> umsMembers = userService.getAllUser();
         return umsMembers;
     }
 
     @RequestMapping("/index")
     @ResponseBody
-    public String index(){
+    public String index() {
         return "hello springboot";
     }
 }

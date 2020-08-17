@@ -57,8 +57,7 @@ public class AttrServiceImpl implements AttrService {
                 pmsBaseAttrValue.setAttrId(pmsBaseAttrInfo.getId());
                 pmsBaseAttrValueMapper.insertSelective(pmsBaseAttrValue);
             }
-        }
-        else{
+        } else {
             Example example = new Example(PmsBaseAttrInfo.class);
             example.createCriteria().andEqualTo("id", pmsBaseAttrInfo.getId());
             pmsBaseAttrInfoMapper.updateByExampleSelective(pmsBaseAttrInfo, example);
@@ -67,7 +66,7 @@ public class AttrServiceImpl implements AttrService {
             pmsBaseAttrValueDel.setAttrId(pmsBaseAttrInfo.getId());
             pmsBaseAttrValueMapper.delete(pmsBaseAttrValueDel);
 
-            for(PmsBaseAttrValue pmsBaseAttrValue : attrValueList){
+            for (PmsBaseAttrValue pmsBaseAttrValue : attrValueList) {
                 pmsBaseAttrValueMapper.insertSelective(pmsBaseAttrValue);
             }
         }

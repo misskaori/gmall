@@ -27,7 +27,7 @@ public class ManageWebApplicationTests {
         String[] uploadInfos = storageClient.upload_file("D:/Application/SourceCode/谷粒商城开发工具/picture/kaori.jpg", "jpg", null);
         String url = "http://192.168.100.128";
         for (String uploadInfo : uploadInfos) {
-            url += "/"+uploadInfo;
+            url += "/" + uploadInfo;
         }
         System.out.println(url);
     }

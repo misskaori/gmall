@@ -26,6 +26,7 @@ public class CatalogServiceImpl implements CatalogService {
     public List<PmsBaseCatalog1> getCatalog1() {
         return pmsBaseCatalog1Mapper.selectAll();
     }
+
     @Override
     public List<PmsBaseCatalog2> getCatalog2(String catalog1Id) {
         PmsBaseCatalog2 pmsBaseCatalog2 = new PmsBaseCatalog2();

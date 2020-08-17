@@ -15,6 +15,7 @@ public class UserApplicationTests {
     UserMapper userMapper;
     @Autowired
     UmsMemberReceiveAddressMapper umsMemberReceiveAddressMapper;
+
     @Test
     public void contextLoads() {
         umsMemberReceiveAddressMapper.selectAllUserAddress();

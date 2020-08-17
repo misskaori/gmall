@@ -38,10 +38,10 @@ public class SpuServiceImpl implements SpuService {
             pmsProductImage.setProductId(pmsProductInfo.getId());
             pmsProductImageMapper.insertSelective(pmsProductImage);
         }
-        for(PmsProductSaleAttr pmsProductSaleAttr : pmsProductInfo.getSpuSaleAttrList()){
+        for (PmsProductSaleAttr pmsProductSaleAttr : pmsProductInfo.getSpuSaleAttrList()) {
             pmsProductSaleAttr.setProductId(pmsProductInfo.getId());
             pmsProductSaleAttrMapper.insertSelective(pmsProductSaleAttr);
-            for(PmsProductSaleAttrValue pmsProductSaleAttrValue : pmsProductSaleAttr.getSpuSaleAttrValueList()){
+            for (PmsProductSaleAttrValue pmsProductSaleAttrValue : pmsProductSaleAttr.getSpuSaleAttrValueList()) {
                 pmsProductSaleAttrValue.setProductId(pmsProductInfo.getId());
                 pmsProductSaleAttrValueMapper.insertSelective(pmsProductSaleAttrValue);
             }
