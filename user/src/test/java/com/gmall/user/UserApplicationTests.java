@@ -18,7 +18,7 @@ public class UserApplicationTests {
 
     @Test
     public void contextLoads() {
-        umsMemberReceiveAddressMapper.selectAllUserAddress();
+        System.out.println(userMapper.selectAll());
     }
 
 }
