@@ -11,8 +11,11 @@ user-web port: 8080
 manage-service port: 8071  
 manage-web port: 8081  
  
-- **Consumer oriented system  
+- Consumer oriented system: 
 item-service  port: 8072  
 item-web  port: 8082
 
+- Search system: 
+search-service  port: 8074  
+search-web  port: 8083
 
