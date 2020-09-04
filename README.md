@@ -17,6 +17,10 @@ item-service  port: 8072
 item-web  port: 8082
 
 - Search system:   
-search-service  port: 8074  
+search-service  port: 8073  
 search-web  port: 8083
+
+- Cart system:  
+cart-service port: 8074  
+cart-web port: 8084
 
