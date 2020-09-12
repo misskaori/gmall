@@ -21,6 +21,10 @@ search-service  port: 8073
 search-web  port: 8083
 
 - Cart system:  
-cart-service port: 8074  
-cart-web port: 8084
+cart-service port: 8077  
+cart-web port: 8087
+
+- Registration center:  
+passport-web: 8085  
+user-service: 8070
 

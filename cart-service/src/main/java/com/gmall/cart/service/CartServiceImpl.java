@@ -2,6 +2,7 @@ package com.gmall.cart.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
+
 import com.gmall.bean.OmsCartItem;
 import com.gmall.cart.mapper.OmsCartItemMapper;
 import com.gmall.service.CartService;
@@ -81,7 +82,7 @@ public class CartServiceImpl implements CartService {
         Jedis jedis = null;
         List<OmsCartItem> omsCartItems = new ArrayList<>();
         try {
-             jedis = redisUtil.getJedis();
+            jedis = redisUtil.getJedis();
 
             List<String> hvals = jedis.hvals("user:" + userId + ":cart");
 
@@ -89,7 +90,7 @@ public class CartServiceImpl implements CartService {
                 OmsCartItem omsCartItem = JSON.parseObject(hval, OmsCartItem.class);
                 omsCartItems.add(omsCartItem);
             }
-            
+
         }catch (Exception e){
             // 处理异常，记录系统日志
             e.printStackTrace();
