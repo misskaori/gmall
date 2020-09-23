@@ -2,9 +2,9 @@ package com.gmall.manage.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
+
 import com.gmall.bean.PmsSkuAttrValue;
 import com.gmall.bean.PmsSkuImage;
-
 import com.gmall.bean.PmsSkuInfo;
 import com.gmall.bean.PmsSkuSaleAttrValue;
 import com.gmall.manage.mapper.PmsSkuAttrValueMapper;
@@ -12,12 +12,14 @@ import com.gmall.manage.mapper.PmsSkuImageMapper;
 import com.gmall.manage.mapper.PmsSkuInfoMapper;
 import com.gmall.manage.mapper.PmsSkuSaleAttrValueMapper;
 import com.gmall.service.SkuService;
-import com.gmall.service.SpuService;
 import com.gmall.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.Jedis;
+import tk.mybatis.mapper.entity.Example;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,6 +40,7 @@ public class SkuServiceImpl implements SkuService {
 
     @Autowired
     RedisUtil redisUtil;
+
 
     @Override
     public void saveSkuInfo(PmsSkuInfo pmsSkuInfo) {
@@ -66,7 +69,10 @@ public class SkuServiceImpl implements SkuService {
             pmsSkuImage.setSkuId(skuId);
             pmsSkuImageMapper.insertSelective(pmsSkuImage);
         }
+
+
     }
+
 
     public PmsSkuInfo getSkuByIdFromDb(String skuId){
         // sku商品对象
@@ -125,8 +131,6 @@ public class SkuServiceImpl implements SkuService {
                     //jedis.eval("lua");可与用lua脚本，在查询到key的同时删除该key，防止高并发下的意外的发生
                     jedis.del("sku:" + skuId + ":lock");// 用token确认删除的是自己的sku的锁
                 }
-
-
             }else{
                 // 设置失败，自旋（该线程在睡眠几秒后，重新尝试访问本方法）
                 System.out.println("ip为"+ip+"的同学:"+Thread.currentThread().getName()+"没有拿到锁，开始自旋");
@@ -140,11 +144,14 @@ public class SkuServiceImpl implements SkuService {
 
     @Override
     public List<PmsSkuInfo> getSkuSaleAttrValueListBySpu(String productId) {
-        return pmsSkuInfoMapper.selectSkuSaleAttrValueListBySpu(productId);
+
+        List<PmsSkuInfo> pmsSkuInfos = pmsSkuInfoMapper.selectSkuSaleAttrValueListBySpu(productId);
+
+        return pmsSkuInfos;
     }
 
     @Override
-    public List<PmsSkuInfo> getAllSku() {
+    public List<PmsSkuInfo> getAllSku(String catalog3Id) {
         List<PmsSkuInfo> pmsSkuInfos = pmsSkuInfoMapper.selectAll();
 
         for (PmsSkuInfo pmsSkuInfo : pmsSkuInfos) {
@@ -157,5 +164,24 @@ public class SkuServiceImpl implements SkuService {
             pmsSkuInfo.setSkuAttrValueList(select);
         }
         return pmsSkuInfos;
+    }
+
+    @Override
+    public boolean checkPrice(String productSkuId, BigDecimal productPrice) {
+
+        boolean b = false;
+
+        PmsSkuInfo pmsSkuInfo = new PmsSkuInfo();
+        pmsSkuInfo.setId(productSkuId);
+        PmsSkuInfo pmsSkuInfo1 = pmsSkuInfoMapper.selectOne(pmsSkuInfo);
+
+        BigDecimal price = pmsSkuInfo1.getPrice();
+
+        if(price.compareTo(productPrice)==0){
+            b = true;
+        }
+
+
+        return b;
     }
 }

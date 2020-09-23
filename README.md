@@ -4,7 +4,7 @@ This is a gmall Java project
 SOA mode is provided by **dubbo and zookeeper**.  
 Image storage is provided by **fastdfs1.27 and nginx**.  
 Search function is provided by **elasticsearch**.
-  
+ 
 user-service port: 8070  
 user-web port: 8080   
 
@@ -26,5 +26,9 @@ cart-web port: 8087
 
 - Registration center:  
 passport-web: 8085  
-user-service: 8070
+user-service: 8070  
+- Order system:  
+order-web: 8086  
+order-service: 8076  
+
 

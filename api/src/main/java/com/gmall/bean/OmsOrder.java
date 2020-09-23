@@ -1,14 +1,22 @@
 package com.gmall.bean;
 
+import com.gmall.bean.OmsOrderItem;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class OmsOrder implements Serializable {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String memberId;
     private String couponId;
@@ -24,7 +32,7 @@ public class OmsOrder implements Serializable {
     private BigDecimal discountAmount;
     private int payType;
     private int sourceType;
-    private int status;
+    private String status;
     private int orderType;
     private String deliveryCompany;
     private String deliverySn;
@@ -53,6 +61,19 @@ public class OmsOrder implements Serializable {
     private Date receiveTime;
     private Date commentTime;
     private Date modifyTime;
+
+
+    @Transient
+    List<OmsOrderItem> omsOrderItems;
+
+
+    public List<OmsOrderItem> getOmsOrderItems() {
+        return omsOrderItems;
+    }
+
+    public void setOmsOrderItems(List<OmsOrderItem> omsOrderItems) {
+        this.omsOrderItems = omsOrderItems;
+    }
 
     public String getId() {
         return id;
@@ -174,11 +195,11 @@ public class OmsOrder implements Serializable {
         this.sourceType = sourceType;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

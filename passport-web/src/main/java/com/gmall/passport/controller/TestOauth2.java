@@ -11,10 +11,10 @@ public class TestOauth2 {
     public static String getCode(){
 
         // 1 获得授权码
-        // 187638711
+        // 503383488
         // http://passport.gmall.com:8085/vlogin
 
-        String s1 = HttpclientUtil.doGet("https://api.weibo.com/oauth2/authorize?client_id=187638711&response_type=code&redirect_uri=http://passport.gmall.com:8085/vlogin");
+        String s1 = HttpclientUtil.doGet("https://api.weibo.com/oauth2/authorize?client_id=503383488&response_type=code&redirect_uri=http://passport.gmall.com:8085/vlogin");
 
         System.out.println(s1);
 
@@ -28,9 +28,9 @@ public class TestOauth2 {
     public static String getAccess_token(){
         // 3 换取access_token
         // client_secret=a79777bba04ac70d973ee002d27ed58c
-        String s3 = "https://api.weibo.com/oauth2/access_token?";//?client_id=187638711&client_secret=a79777bba04ac70d973ee002d27ed58c&grant_type=authorization_code&redirect_uri=http://passport.gmall.com:8085/vlogin&code=CODE";
+        String s3 = "https://api.weibo.com/oauth2/access_token?";//?client_id=503383488&client_secret=a79777bba04ac70d973ee002d27ed58c&grant_type=authorization_code&redirect_uri=http://passport.gmall.com:8085/vlogin&code=CODE";
         Map<String,String> paramMap = new HashMap<>();
-        paramMap.put("client_id","187638711");
+        paramMap.put("client_id","503383488");
         paramMap.put("client_secret","a79777bba04ac70d973ee002d27ed58c");
         paramMap.put("grant_type","authorization_code");
         paramMap.put("redirect_uri","http://passport.gmall.com:8085/vlogin");
