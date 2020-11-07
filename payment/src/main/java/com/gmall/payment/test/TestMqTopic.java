@@ -19,7 +19,7 @@ public class TestMqTopic {
             Topic topic = session.createTopic("speaking");// 话题模式的消息
 
             MessageProducer producer = session.createProducer(topic);
-            TextMessage textMessage=new ActiveMQTextMessage();
+            TextMessage textMessage = new ActiveMQTextMessage();
             textMessage.setText("为尚硅谷的伟大复兴而努力奋斗！");
             producer.setDeliveryMode(DeliveryMode.PERSISTENT);
             producer.send(textMessage);

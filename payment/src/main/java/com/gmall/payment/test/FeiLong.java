@@ -7,7 +7,7 @@ import javax.jms.*;
 
 public class FeiLong {
     public static void main(String[] args) {
-        ConnectionFactory connect = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_USER,ActiveMQConnection.DEFAULT_PASSWORD,"tcp://localhost:61616");
+        ConnectionFactory connect = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_USER, ActiveMQConnection.DEFAULT_PASSWORD, "tcp://localhost:61616");
         try {
             Connection connection = connect.createConnection();
             connection.start();
@@ -19,10 +19,10 @@ public class FeiLong {
             consumer.setMessageListener(new MessageListener() {
                 @Override
                 public void onMessage(Message message) {
-                    if(message instanceof TextMessage){
+                    if (message instanceof TextMessage) {
                         try {
                             String text = ((TextMessage) message).getText();
-                            System.err.println(text+"我来了，我来执行。。。我叫飞龙");
+                            System.err.println(text + "我来了，我来执行。。。我叫飞龙");
 
                             // session.commit();
                             // session.rollback();
@@ -36,8 +36,9 @@ public class FeiLong {
             });
 
 
-        }catch (Exception e){
-            e.printStackTrace();;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ;
         }
     }
 

@@ -20,7 +20,7 @@ public class TestMq {
             //Topic t = session.createTopic("");// 话题模式的消息
 
             MessageProducer producer = session.createProducer(testqueue);
-            TextMessage textMessage=new ActiveMQTextMessage();
+            TextMessage textMessage = new ActiveMQTextMessage();
             textMessage.setText("我渴了，谁能帮我打一杯水！");
             producer.setDeliveryMode(DeliveryMode.PERSISTENT);
             producer.send(textMessage);

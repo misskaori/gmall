@@ -82,11 +82,11 @@ public class OrderController {
             omsOrder.setReceiverRegion(umsMemberReceiveAddress.getRegion());
             // 当前日期加一天，一天后配送
             Calendar c = Calendar.getInstance();
-            c.add(Calendar.DATE,1);
+            c.add(Calendar.DATE, 1);
             Date time = c.getTime();
             omsOrder.setReceiveTime(time);
             omsOrder.setSourceType(0);
-            omsOrder.setStatus(0);
+            omsOrder.setStatus("0");
             omsOrder.setOrderType(0);
             omsOrder.setTotalAmount(totalAmount);
 
@@ -98,7 +98,7 @@ public class OrderController {
                     // 获得订单详情列表
                     OmsOrderItem omsOrderItem = new OmsOrderItem();
                     // 检价
-                    boolean b = skuService.checkPrice(omsCartItem.getProductSkuId(),omsCartItem.getPrice());
+                    boolean b = skuService.checkPrice(omsCartItem.getProductSkuId(), omsCartItem.getPrice());
                     if (b == false) {
                         ModelAndView mv = new ModelAndView("tradeFail");
                         return mv;
@@ -129,8 +129,8 @@ public class OrderController {
 
             // 重定向到支付系统
             ModelAndView mv = new ModelAndView("redirect:http://payment.gmall.com:8087/index");
-            mv.addObject("outTradeNo",outTradeNo);
-            mv.addObject("totalAmount",totalAmount);
+            mv.addObject("outTradeNo", outTradeNo);
+            mv.addObject("totalAmount", totalAmount);
             return mv;
         } else {
             ModelAndView mv = new ModelAndView("tradeFail");

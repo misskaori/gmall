@@ -28,31 +28,31 @@ public class ItemController {
     SpuService spuService;
 
     @RequestMapping("/index")
-    public String index(ModelMap modelMap){
+    public String index(ModelMap modelMap) {
         List<String> list = new ArrayList<>();
-        for (int i = 0; i <5 ; i++) {
-            list.add("循环数据"+i);
+        for (int i = 0; i < 5; i++) {
+            list.add("循环数据" + i);
         }
-        modelMap.put("list",list);
-        modelMap.put("hello","hello thymeleaf !!");
-        modelMap.put("check","0");
+        modelMap.put("list", list);
+        modelMap.put("hello", "hello thymeleaf !!");
+        modelMap.put("check", "0");
         return "index";
     }
 
     @RequestMapping("{skuId}.html")
-    public String item(@PathVariable String skuId, ModelMap map, HttpServletRequest request){
+    public String item(@PathVariable String skuId, ModelMap map, HttpServletRequest request) {
 
         String remoteAddr = request.getRemoteAddr();
 
         // request.getHeader("");// nginx负载均衡
 
-        PmsSkuInfo pmsSkuInfo = skuService.getSkuById(skuId,remoteAddr);
+        PmsSkuInfo pmsSkuInfo = skuService.getSkuById(skuId, remoteAddr);
 
         //sku对象
-        map.put("skuInfo",pmsSkuInfo);
+        map.put("skuInfo", pmsSkuInfo);
         //销售属性列表
-        List<PmsProductSaleAttr> pmsProductSaleAttrs = spuService.spuSaleAttrListCheckBySku(pmsSkuInfo.getProductId(),pmsSkuInfo.getId());
-        map.put("spuSaleAttrListCheckBySku",pmsProductSaleAttrs);
+        List<PmsProductSaleAttr> pmsProductSaleAttrs = spuService.spuSaleAttrListCheckBySku(pmsSkuInfo.getProductId(), pmsSkuInfo.getId());
+        map.put("spuSaleAttrListCheckBySku", pmsProductSaleAttrs);
 
         // 查询当前sku的spu的其他sku的集合的hash表
         Map<String, String> skuSaleAttrHash = new HashMap<>();
@@ -65,12 +65,12 @@ public class ItemController {
             for (PmsSkuSaleAttrValue pmsSkuSaleAttrValue : skuSaleAttrValueList) {
                 k += pmsSkuSaleAttrValue.getSaleAttrValueId() + "|";// "239|245"
             }
-            skuSaleAttrHash.put(k,v);
+            skuSaleAttrHash.put(k, v);
         }
 
         // 将sku的销售属性hash表放到页面
         String skuSaleAttrHashJsonStr = JSON.toJSONString(skuSaleAttrHash);
-        map.put("skuSaleAttrHashJsonStr",skuSaleAttrHashJsonStr);
+        map.put("skuSaleAttrHashJsonStr", skuSaleAttrHashJsonStr);
 
 
         return "item";

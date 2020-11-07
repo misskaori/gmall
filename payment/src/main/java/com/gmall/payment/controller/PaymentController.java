@@ -39,7 +39,7 @@ public class PaymentController {
 
     @RequestMapping("alipay/callback/return")
     @LoginRequired(loginSuccess = true)
-    public String aliPayCallBackReturn(HttpServletRequest request, ModelMap modelMap){
+    public String aliPayCallBackReturn(HttpServletRequest request, ModelMap modelMap) {
 
         // 回调请求中获取支付宝参数
         String sign = request.getParameter("sign");
@@ -52,7 +52,7 @@ public class PaymentController {
 
 
         // 通过支付宝的paramsMap进行签名验证，2.0版本的接口将paramsMap参数去掉了，导致同步请求没法验签
-        if(StringUtils.isNotBlank(sign)){
+        if (StringUtils.isNotBlank(sign)) {
             // 验签成功
             PaymentInfo paymentInfo = new PaymentInfo();
             paymentInfo.setOrderSn(out_trade_no);
@@ -66,16 +66,14 @@ public class PaymentController {
         }
 
 
-
         return "finish";
     }
-
 
 
     @RequestMapping("alipay/submit")
     @LoginRequired(loginSuccess = true)
     @ResponseBody
-    public String alipay(String outTradeNo, BigDecimal totalAmount, HttpServletRequest request, ModelMap modelMap){
+    public String alipay(String outTradeNo, BigDecimal totalAmount, HttpServletRequest request, ModelMap modelMap) {
 
         // 获得一个支付宝请求的客户端(它并不是一个链接，而是一个封装好的http的表单请求)
         String form = null;
@@ -85,11 +83,11 @@ public class PaymentController {
         alipayRequest.setReturnUrl(AlipayConfig.return_payment_url);
         alipayRequest.setNotifyUrl(AlipayConfig.notify_payment_url);
 
-        Map<String,Object> map = new HashMap<>();
-        map.put("out_trade_no",outTradeNo);
-        map.put("product_code","FAST_INSTANT_TRADE_PAY");
-        map.put("total_amount",0.01);
-        map.put("subject","尚硅谷感光徕卡Pro300瞎命名系列手机");
+        Map<String, Object> map = new HashMap<>();
+        map.put("out_trade_no", outTradeNo);
+        map.put("product_code", "FAST_INSTANT_TRADE_PAY");
+        map.put("total_amount", 0.01);
+        map.put("subject", "尚硅谷感光徕卡Pro300瞎命名系列手机");
 
         String param = JSON.toJSONString(map);
 
@@ -119,13 +117,13 @@ public class PaymentController {
 
     @RequestMapping("index")
     @LoginRequired(loginSuccess = true)
-    public String index(String outTradeNo, BigDecimal totalAmount, HttpServletRequest request, ModelMap modelMap){
-        String memberId = (String)request.getAttribute("memberId");
-        String nickname = (String)request.getAttribute("nickname");
+    public String index(String outTradeNo, BigDecimal totalAmount, HttpServletRequest request, ModelMap modelMap) {
+        String memberId = (String) request.getAttribute("memberId");
+        String nickname = (String) request.getAttribute("nickname");
 
-        modelMap.put("nickname",nickname);
-        modelMap.put("outTradeNo",outTradeNo);
-        modelMap.put("totalAmount",totalAmount);
+        modelMap.put("nickname", nickname);
+        modelMap.put("outTradeNo", outTradeNo);
+        modelMap.put("totalAmount", totalAmount);
 
         return "index";
     }
@@ -133,7 +131,7 @@ public class PaymentController {
 
     @RequestMapping("mx/submit")
     @LoginRequired(loginSuccess = true)
-    public String mx(String outTradeNo, BigDecimal totalAmount, HttpServletRequest request, ModelMap modelMap){
+    public String mx(String outTradeNo, BigDecimal totalAmount, HttpServletRequest request, ModelMap modelMap) {
 
 
         return null;

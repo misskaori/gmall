@@ -82,6 +82,7 @@
                 $.post("login",{username:username,password:password},function(token){
                     alert(token);
 					// 验证token是否为空或者异常
+					//通过当前index页面携带token至原始页面（ReturnUrl），再次进入拦截器进行验证
 					window.location.href=$("#ReturnUrl").val()+"?token="+token;
 				});
             }

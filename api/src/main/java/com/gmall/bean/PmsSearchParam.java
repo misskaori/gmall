@@ -3,7 +3,7 @@ package com.gmall.bean;
 import java.io.Serializable;
 import java.util.List;
 
-public class PmsSearchParam implements Serializable{
+public class PmsSearchParam implements Serializable {
 
     private String catalog3Id;
 

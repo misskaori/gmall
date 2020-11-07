@@ -44,8 +44,8 @@ public class SearchServiceImpl implements SearchService {
             e.printStackTrace();
         }
         List<SearchResult.Hit<PmsSearchSkuInfo, Void>> hits = execute.getHits(PmsSearchSkuInfo.class);
-        for (SearchResult.Hit<PmsSearchSkuInfo, Void> hit : hits) {
-            PmsSearchSkuInfo source = hit.source;
+            for (SearchResult.Hit<PmsSearchSkuInfo, Void> hit : hits) {
+                PmsSearchSkuInfo source = hit.source;
 
             Map<String, List<String>> highlight = hit.highlight;
             if(highlight!=null){

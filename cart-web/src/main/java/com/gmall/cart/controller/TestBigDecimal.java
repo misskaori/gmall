@@ -29,7 +29,7 @@ public class TestBigDecimal {
         BigDecimal multiply = b4.multiply(b5);
         System.out.println(multiply);
 
-        BigDecimal divide = b4.divide(b5,3,BigDecimal.ROUND_HALF_DOWN);
+        BigDecimal divide = b4.divide(b5, 3, BigDecimal.ROUND_HALF_DOWN);
         System.out.println(divide);
 
         // 约数
